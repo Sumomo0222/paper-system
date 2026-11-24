@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>PAPER SYSTEM — 为思考而设计的纸面系统 | 高级文具 · 笔记本 · 活页 · 钢笔</title>
+  <meta name="description" content="PAPER SYSTEM 是一间虚构的东京文具工房：笔记本、活页系统、钢笔、贴纸与桌面收纳。米白、石墨黑与一点钴蓝，把桌面当作一套系统来排版。">
+  <meta property="og:title" content="PAPER SYSTEM — 纸面系统">
+  <meta property="og:description" content="把桌面当作一套系统来排版。笔记本 / 活页系统 / 钢笔 / 贴纸 / 桌面收纳。">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230B49C0'/%3E%3Cg stroke='%23F4EFE3' stroke-opacity='.55'%3E%3Cpath d='M8 0v32M16 0v32M24 0v32M0 8h32M0 16h32M0 24h32' stroke-width='1'/%3E%3C/g%3E%3Crect x='18' y='18' width='8' height='8' fill='%23F4EFE3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== 顶栏 ===== -->
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#/" data-nav>
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">PAPER SYSTEM<small>紙のシステム — TOKYO</small></span>
+      </a>
+      <nav class="nav-links" aria-label="主导航">
+        <a href="#/" data-nav data-route="home">首页</a>
+        <a href="#/shop" data-nav data-route="shop">全部商品</a>
+        <a href="#/custom" data-nav data-route="custom">定制工坊</a>
+        <a href="#desk" data-nav data-route="__none" onclick="document.querySelector('#desk')?.scrollIntoView({behavior:'smooth'});return false;">桌面工作台</a>
+      </nav>
+      <div class="nav-right">
+        <button class="cart-btn" id="cart-btn" aria-label="打开购物车">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M1.5 2h2l1.6 8.5h8L15 5H4.2"/><circle cx="6" cy="13.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="13.5" r="1.2" fill="currentColor" stroke="none"/>
+          </svg>
+          <span class="cb-label">购物车</span>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="菜单"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-menu" aria-label="移动端导航">
+    <a href="#/" data-nav>首页</a>
+    <a href="#/shop" data-nav>全部商品</a>
+    <a href="#/custom" data-nav>定制工坊</a>
+  </nav>
+
+  <!-- ===== 视图容器 ===== -->
+  <main id="app"></main>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div>
+        <div class="f-brand"><span class="brand-mark" aria-hidden="true"></span>PAPER SYSTEM</div>
+        <p class="f-story" id="footer-story"></p>
+      </div>
+      <div>
+        <h4>SHOP</h4>
+        <ul>
+          <li><a href="#/shop" data-nav>全部商品</a></li>
+          <li><a href="#/custom" data-nav>定制工坊</a></li>
+          <li><a href="#/shop?cat=notebook" data-nav>笔记本</a></li>
+          <li><a href="#/shop?cat=binder" data-nav>活页系统</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>ABOUT</h4>
+        <ul>
+          <li><a href="#/shop?cat=pen" data-nav>钢笔</a></li>
+          <li><a href="#/shop?cat=sticker" data-nav>贴纸</a></li>
+          <li><a href="#/shop?cat=desk" data-nav>桌面收纳</a></li>
+          <li><a href="#/" data-nav>品牌志</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>CONTACT（虚构）</h4>
+        <ul id="footer-contact"></ul>
+      </div>
+    </div>
+    <div class="wrap footer-bar">
+      <span id="footer-copy"></span>
+      <span>DEMO SITE — ALL PRODUCTS FICTIONAL · IMAGES ARE GENERATED SVG, REPLACEABLE VIA js/data.js</span>
+    </div>
+  </footer>
+
+  <!-- ===== 购物车抽屉 ===== -->
+  <div class="scrim" id="scrim"></div>
+  <aside class="cart-drawer holes" id="cart-drawer" aria-label="购物车">
+    <div class="cart-head">
+      <div><b>购物车</b> <span class="ch-count">(<span id="cart-count-2">0</span>)</span></div>
+      <button class="icon-btn" id="cart-close" aria-label="关闭购物车">
+        <svg width="14" height="14" viewBox="0 0 14 14" stroke="currentColor" stroke-width="1.8" fill="none"><path d="M1 1l12 12M13 1L1 13"/></svg>
+      </button>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-foot">
+      <div class="cf-row"><span>商品小计</span><span class="mono" id="cart-sub">¥0</span></div>
+      <div class="cf-row total"><span>应付总额</span><span id="cart-sub2">¥0</span></div>
+      <button class="btn btn-primary btn-full" id="cart-checkout">去结算 →</button>
+      <p class="cf-note">东京工房出货 · 满 ¥8,000 免运费</p>
+    </div>
+  </aside>
+
+  <noscript><div style="padding:60px 24px;text-align:center;font-family:monospace">PAPER SYSTEM 需要启用 JavaScript 才能浏览。</div></noscript>
+
+  <!-- 数据总配置（经典脚本，最先加载；可独立替换） -->
+  <script src="js/data.js"></script>
+  <script type="module" src="js/app.mjs"></script>
+  <script>
+    /* 页脚由 data.js 渲染 + 抽屉结算按钮 */
+    (function () {
+      const D = window.PS_DATA;
+      document.getElementById('footer-story').textContent = D.brand.story;
+      document.getElementById('footer-contact').innerHTML =
+        '<li><a>' + D.brand.address + '</a></li><li><a>' + D.brand.email + '</a></li>';
+      document.getElementById('footer-copy').textContent = '© 2026 ' + D.brand.name + ' — ' + D.brand.since;
+      document.getElementById('cart-sub2').textContent = '¥0';
+      document.getElementById('cart-checkout').addEventListener('click', function () {
+        const n = JSON.parse(localStorage.getItem('ps-cart-v1') || '[]').length;
+        if (!n) { location.hash = '#/shop'; return; }
+        location.hash = '#/checkout';
+      });
+    })();
+  </script>
+</body>
+</html>

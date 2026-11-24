@@ -1,0 +1,12 @@
+{
+  "name": "paper-system-shop",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "PAPER SYSTEM — 虚构高级文具品牌购物网站（纯静态，无构建）",
+  "scripts": {
+    "dev": "python3 -m http.server 8860",
+    "assets": "node tools/render-assets.mjs",
+    "shot": "node tools/screenshot.mjs"
+  }
+}
