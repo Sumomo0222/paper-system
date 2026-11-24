@@ -218,11 +218,11 @@ function viewHome() {
         <div class="hero-scroll">SCROLL — 整理一张你的桌面</div>
       </div>
       <aside class="hero-side cm"><span class="cm2"></span>
-        <div class="hs-row"><span class="hs-k">Paper</span><span class="hs-v">川内川纸 · 92g 三层施胶</span></div>
-        <div class="hs-row"><span class="hs-k">Binding</span><span class="hs-v">裸装锁线 · 180° 平摊</span></div>
-        <div class="hs-row"><span class="hs-k">System</span><span class="hs-v">六孔互换 · 可增删</span></div>
-        <div class="hs-row"><span class="hs-k">Ink</span><span class="hs-v">钴蓝 #07 · 全线同源</span></div>
-        <div class="hs-row"><span class="hs-k">Colors</span><span class="hs-v">米白 / 石墨黑 / 钴蓝</span></div>
+        <div class="hs-row"><span class="hs-k">纸张 PAPER</span><span class="hs-v">川内川纸 · 92g 三层施胶</span></div>
+        <div class="hs-row"><span class="hs-k">装订 BINDING</span><span class="hs-v">裸装锁线 · 180° 平摊</span></div>
+        <div class="hs-row"><span class="hs-k">系统 SYSTEM</span><span class="hs-v">六孔互换 · 可增删</span></div>
+        <div class="hs-row"><span class="hs-k">墨水 INK</span><span class="hs-v">钴蓝 #07 · 全线同源</span></div>
+        <div class="hs-row"><span class="hs-k">配色 COLORS</span><span class="hs-v">米白 / 石墨黑 / 钴蓝</span></div>
       </aside>
     </div>
   </section>
@@ -586,7 +586,7 @@ function viewProduct() {
         <p class="pd-sub">${esc(p.sub || '')}</p>
         <div class="pd-priceline">
           <span class="pd-price"><small>${D.currency.symbol}</small><span id="pd-price">${Math.round(p.price).toLocaleString('en-US')}</span></span>
-          <span class="pd-taxnote">含税 · JPY</span>
+          <span class="pd-taxnote">含税 · 人民币</span>
         </div>
         <p class="pd-story">${esc(p.story || '')}</p>
 
